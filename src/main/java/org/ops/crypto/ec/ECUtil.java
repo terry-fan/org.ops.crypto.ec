@@ -29,7 +29,7 @@ class ECUtil {
             KeyPair pair = keyGen.generateKeyPair();
             System.out.println( pair.toString() );
 
-            Signature dsa = Signature.getInstance("SHA1withECDSA");
+            Signature dsa = Signature.getInstance("SHA512withECDSA");
             dsa.initSign(pair.getPrivate());
             
             String str = "Message to sign";
@@ -39,7 +39,7 @@ class ECUtil {
             byte[] realSig = dsa.sign();
             System.out.println("Signature: " + Base64.encodeBase64String(realSig));
 
-            Signature dsaVerifier = Signature.getInstance("SHA1withECDSA");
+            Signature dsaVerifier = Signature.getInstance("SHA512withECDSA");
             dsaVerifier.initVerify(pair.getPublic());
             dsaVerifier.update(strByte);
             boolean verified = dsaVerifier.verify(realSig);
